@@ -24,6 +24,12 @@ export const defaultStoreVariantRelations = ["prices", "options", "product"]
 /**
  * @schema StoreVariantsRes
  * type: object
+ * x-expanded-relations:
+ *   field: variant
+ *   relations:
+ *     - prices
+ *     - options
+ *     - product
  * required:
  *   - variant
  * properties:
@@ -37,6 +43,12 @@ export type StoreVariantsRes = {
 /**
  * @schema StoreVariantsListRes
  * type: object
+ * x-expanded-relations:
+ *   field: variants
+ *   relations:
+ *     - prices
+ *     - options
+ *     - product
  * required:
  *   - variants
  * properties:

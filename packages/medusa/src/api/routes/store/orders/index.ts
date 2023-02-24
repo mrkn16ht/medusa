@@ -125,12 +125,64 @@ export const allowedStoreOrdersFields = [
   "gift_card_total",
   "gift_card_tax_total",
 ]
-
+/**
+ * Totals relation:
+ *  - items.variant.product
+ *  - items.tax_lines
+ *  - shipping_methods.tax_lines
+ *  - region.tax_rates
+ * Eager loaded:
+ *  - fulfillments.items
+ *  - region.payment_providers
+ *  - region.fulfillment_providers
+ *  - shipping_methods.shipping_option
+ */
 /**
  * @schema StoreOrdersRes
  * type: object
  * required:
  *   - order
+ * x-expanded-relations:
+ *   field: order
+ *   relations:
+ *     - customer
+ *     - discounts
+ *     - discounts.rule
+ *     - fulfillments
+ *     - fulfillments.tracking_links
+ *     - items
+ *     - items.variant
+ *     - payments
+ *     - region
+ *     - shipping_address
+ *     - shipping_methods
+ *     - items.variant.product
+ *     - items.tax_lines
+ *     - shipping_methods.tax_lines
+ *     - region.tax_rates
+ *     - fulfillments.items
+ *     - region.payment_providers
+ *     - region.fulfillment_providers
+ *     - shipping_methods.shipping_option
+ *   totals:
+ *     - discount_total
+ *     - gift_card_tax_total
+ *     - gift_card_total
+ *     - paid_total
+ *     - refundable_amount
+ *     - refunded_total
+ *     - shipping_total
+ *     - subtotal
+ *     - tax_total
+ *     - total
+ *     - items.discount_total
+ *     - items.gift_card_total
+ *     - items.original_tax_total
+ *     - items.original_total
+ *     - items.refundable
+ *     - items.subtotal
+ *     - items.tax_total
+ *     - items.total
  * properties:
  *   order:
  *     $ref: "#/components/schemas/Order"

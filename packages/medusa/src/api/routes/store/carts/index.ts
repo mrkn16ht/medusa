@@ -1,5 +1,5 @@
 import "reflect-metadata"
-import { RequestHandler, Router } from "express"
+import { Router } from "express"
 
 import { Cart, Order, Swap } from "../../../../"
 import { FindParams } from "../../../../types/common"
@@ -152,8 +152,64 @@ export const defaultStoreCartRelations = [
 ]
 
 /**
+ * Totals relation:
+ *  - items.variant.product
+ *  - items.tax_lines
+ *  - shipping_methods.tax_lines
+ *  - region.tax_rates
+ * Eager loaded:
+ *  - region.payment_providers
+ *  - region.fulfillment_providers
+ *  - shipping_methods.shipping_option
+ */
+/**
  * @schema StoreCartsRes
  * type: object
+ * x-expanded-relations:
+ *   field: cart
+ *   relations:
+ *     - billing_address
+ *     - discounts
+ *     - discounts.rule
+ *     - gift_cards
+ *     - items
+ *     - items.adjustments
+ *     - items.variant
+ *     - payment
+ *     - payment_sessions
+ *     - region
+ *     - region.countries
+ *     - region.payment_providers
+ *     - shipping_address
+ *     - shipping_methods
+ *     - shipping_methods.shipping_option
+ *     - items.variant.product
+ *     - items.tax_lines
+ *     - shipping_methods.tax_lines
+ *     - region.tax_rates
+ *     - region.payment_providers
+ *     - region.fulfillment_providers
+ *     - shipping_methods.shipping_option
+ *   totals:
+ *     - discount_total
+ *     - gift_card_tax_total
+ *     - gift_card_total
+ *     - item_tax_total
+ *     - refundable_amount
+ *     - refunded_total
+ *     - shipping_tax_total
+ *     - shipping_total
+ *     - subtotal
+ *     - tax_total
+ *     - total
+ *     - items.discount_total
+ *     - items.gift_card_total
+ *     - items.original_tax_total
+ *     - items.original_total
+ *     - items.refundable
+ *     - items.subtotal
+ *     - items.tax_total
+ *     - items.total
  * required:
  *   - cart
  * properties:

@@ -114,6 +114,11 @@ export const allowedStoreCustomersFields = [
 /**
  * @schema StoreCustomersRes
  * type: object
+ * x-expanded-relations:
+ *   field: customer
+ *   relations:
+ *     - shipping_addresses
+ *     - billing_address
  * required:
  *   - customer
  * properties:
@@ -127,6 +132,31 @@ export type StoreCustomersRes = {
 /**
  * @schema StoreCustomersListOrdersRes
  * type: object
+ * x-expanded-relations:
+ *   field: orders
+ *   relations:
+ *     - shipping_address
+ *     - fulfillments
+ *     - fulfillments.tracking_links
+ *     - items
+ *     - items.variant
+ *     - shipping_methods
+ *     - discounts
+ *     - discounts.rule
+ *     - customer
+ *     - payments
+ *     - region
+ *   totals:
+ *     - discount_total
+ *     - gift_card_tax_total
+ *     - gift_card_total
+ *     - paid_total
+ *     - refundable_amount
+ *     - refunded_total
+ *     - shipping_total
+ *     - subtotal
+ *     - tax_total
+ *     - total
  * required:
  *   - orders
  *   - count
